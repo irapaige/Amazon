@@ -6,6 +6,7 @@ const  Navbar = () => {
         <div className='container'>
           <nav className="navbar navbar-expand-lg navbar-light bg-primary">
    <div className="container-fluid">
+       {/* eslint-disable-next-line */}
       <a className="navbar-brand" href="#">Jackies Store</a>
       <button
          className="navbar-toggler"
@@ -50,7 +51,7 @@ const  Navbar = () => {
                <a
                   className="nav-link disabled"
                   href="#"
-                  tabindex="-1"
+                  tabIndex="-1"
                   aria-disabled="true"
                   >Disabled</a
                >
