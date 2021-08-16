@@ -1,12 +1,10 @@
 import React from 'react';
 import data from '../Data';
-import Rating from "./Rating/Rating"
+ import Rating from '../Components/Rating/Rating'
  
-
-
-export default function Product() {
-  return(
-    <div className="row center">
+function HomeScreen  ()  {
+    return (
+         <div className="row center">
     {
       
       data.products.map((product)=>(
@@ -24,9 +22,9 @@ export default function Product() {
                   </a>
                    </div> {/* end of card body */}
 
-<Rating/>
+<Rating rating={product.rating} numReviews={product.numReviews}/>
 
-
+${product.price}
 
 
 </div> // end of card
@@ -36,6 +34,9 @@ export default function Product() {
       
 
     }</div>//end of row center
-  )
+    );
+}
+export default HomeScreen;
  
-}  
+ 
+ 

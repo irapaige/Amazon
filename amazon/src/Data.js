@@ -40,7 +40,7 @@ const data = {
         image: '/images/04.jpg',
         price: 78,
         brand: 'Nike',
-        rating: 4.5,
+        rating: 1.5,
         numReviews: 14,
         description: 'high quality product',
       },
