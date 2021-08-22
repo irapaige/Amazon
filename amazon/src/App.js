@@ -6,20 +6,19 @@ import {BrowserRouter,Route } from 'react-router-dom';
 
 function App() {
   return (
-
+    <BrowserRouter>
     <div className="App">
 
 <Navbar/>
-        <BrowserRouter>
-            <Route path="/product/:id" component={ProductScreen}></Route>
-            <Route path="/" component={HomeScreen} exact></Route>
-        </BrowserRouter>
-        <Footer/>
+<Route path="/" component={HomeScreen } exact></Route>
+<Route path= "/product/:id" component={ProductScreen}></Route>
+
+<Footer/>
 
 
       
           </div>
-
+      </BrowserRouter>    
   );
 }
 
