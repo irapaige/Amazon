@@ -1,10 +1,27 @@
-import React from 'react';
-import data from '../Components/data';
+import React,{useEffect} from 'react';
+
+
  import Rating from '../Components/Rating';
 import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import { getProducts } from '../features/products/productSlice'
 
-export default function ProductScreen  (props)  {
-    const product = data.products.find((x)=> x._id ===props.match.params.id);
+
+
+
+export default function ProductScreen(props) {
+    
+    const dispatch =useDispatch();
+    const {products} =useSelector(state =>state.products)
+    
+    
+    useEffect(() => {
+        dispatch(getProducts())
+     }, []);
+    
+
+
+    const product = products.find((x)=> x._id ===props.match.params.id);
     if (!product){
     return<div> Product Not Found</div>}
 
