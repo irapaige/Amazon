@@ -1,6 +1,4 @@
 import React,{useEffect} from 'react';
-
-
  import Rating from '../Components/Rating';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
