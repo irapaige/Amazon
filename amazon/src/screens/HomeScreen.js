@@ -9,7 +9,7 @@ import {getProducts} from '../features/products/productsSlice'
 export default function HomeScreen() {
     const dispatch =useDispatch();
  const {products} =useSelector(state =>state.products)
-    console.log(products)
+
 
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function HomeScreen() {
                         <Product key={product._id} product={product}></Product>
                     ))}
                 </div>
-            }
+          
         </div>
     );
 }

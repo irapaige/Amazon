@@ -2,30 +2,32 @@ import React,{useEffect,useState} from 'react';
  import Rating from '../Components/Rating';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import { getProducts } from '../features/products/productsSlice'
+import { getDetails } from '../features/products/detailsSlice'
+import {addToCart}from '../features/cartSlice';
 
 
 
-export default function ProductScreen(props) {
+export default function DetailsScreen(props) {
     const [qty,setQty]=useState(1)
 
     const productId = props.match.params.id;
     const dispatch =useDispatch();
-    const {products} =useSelector(state =>state.products)
+    const {details} =useSelector(state =>state.details)
     
     
     useEffect(() => {
-        dispatch(getProducts())
+        dispatch(getDetails())
      }, [dispatch]);
     
 
 
-    const product = products.find((x)=> x._id ===props.match.params.id);
+    const product = details.find((x)=> x._id ===props.match.params.id);
     if (!product){
     return<div> Product Not Found</div>}
-const addToCartHandler=()=>{
-    props.history.push(`/cart/${productId}?qty={qty}`)
-}
+
+const addToCartHandler=(product)=>{
+   dispatch(addToCart(product));
+};
 
     return (
         <div>
@@ -37,7 +39,7 @@ const addToCartHandler=()=>{
             <div className='col-2'>
             <ul>
             <li>
-            <h2>>{product.name}</h2>
+            <h2>{product.name}</h2>
             </li>
                 <li>
                     <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
@@ -59,14 +61,14 @@ const addToCartHandler=()=>{
 <ul>
     <li>
         <div className='row'>
-<div className= 'price'>Price</div> <div>${product.price}> </div>
+<div className= 'price'>Price</div> <div>${product.price} </div>
 
 </div>
 
     </li>
             <li>
             <div className='row'>
-            <div>Status></div>
+            <div>Status</div>
             <div>
                 {product.countInStock>0?(<span className='success'>In Stock</span>
                 ):(<span className='error'>Out Of Stock</span>)}
@@ -91,7 +93,7 @@ const addToCartHandler=()=>{
 
         </li>
         <li>
-            <button onClick={addToCartHandler} className={'primary block'}>Add To Cart</button>
+            <button onClick={()=>addToCartHandler(product)} className={'primary block'}>Add To Cart</button>
         </li>
     </>}
 

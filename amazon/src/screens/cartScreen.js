@@ -1,5 +1,5 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+
 
 const CartScreen = (props) => {
     const productId = props.match.params.id;
