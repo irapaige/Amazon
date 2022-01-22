@@ -3,7 +3,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 export const getDetails =createAsyncThunk(
 "details/getDetails",
     async( ) =>{
-return await fetch(`/api/products/:$(id)`).then(
+return await fetch(`/api/products/`).then(
             (res)=>res.json()
         );
 
