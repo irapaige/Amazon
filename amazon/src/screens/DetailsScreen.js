@@ -4,11 +4,13 @@ import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { getDetails } from '../features/products/detailsSlice'
 import {addToCart}from '../features/cartSlice';
+import {useHistory} from 'react-router-dom'
 
 
 
 export default function DetailsScreen(props) {
     const [qty,setQty]=useState(1)
+    const history = useHistory()
 
     const productId = props.match.params.id;
     const dispatch =useDispatch();
@@ -27,6 +29,7 @@ export default function DetailsScreen(props) {
 
 const addToCartHandler=(product)=>{
    dispatch(addToCart(product));
+   history.push("/cart")
 };
 
     return (

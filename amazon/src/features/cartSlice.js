@@ -3,7 +3,7 @@ import {toast}from "react-toastify";
 
 
 const  initialState={
-    cartItems:[],
+    cartItems:localStorage.getItem('cartItem') ? JSON.parse(localStorage.getItem('cartItems')):[],
     cartTotalQuantity:0,
 cartTotalAmount:0
 };
@@ -22,9 +22,10 @@ else{
                 state.cartItems.push(tempProduct);
     toast.success(`added ${action.payload.name} to cart`,{position:"bottom-left"})
             }
-
+            localStorage.setItem("cartItems",JSON.stringify(state.cartItems));
         }
     }
+
 }
 
 );
