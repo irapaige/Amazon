@@ -1,15 +1,16 @@
-import React,{useEffect,useState} from 'react';
+import React, {useEffect, useContext, useState} from 'react';
  import Rating from '../Components/Rating';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { getDetails } from '../features/products/detailsSlice'
 import {addToCart}from '../features/cartSlice';
 import {useHistory} from 'react-router-dom'
+import QtyContext from "../Components/context/QtyContext";
 
 
 
 export default function DetailsScreen(props) {
-    const [qty,setQty]=useState(1)
+    const [qty,setQty]=useContext(QtyContext)
     const history = useHistory()
 
     const productId = props.match.params.id;
@@ -29,7 +30,7 @@ export default function DetailsScreen(props) {
 
 const addToCartHandler=(product)=>{
    dispatch(addToCart(product));
-   history.push("/cart")
+   history.push("/cart" )
 };
 
     return (
