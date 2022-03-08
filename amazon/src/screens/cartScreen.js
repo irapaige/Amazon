@@ -20,6 +20,7 @@ const CartScreen = (props) => {
   return (
     <div>
       <h1>Cart Screen</h1>
+        ProductId={productId}
  qty={qty}
     </div>
   );
