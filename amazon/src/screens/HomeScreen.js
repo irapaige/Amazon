@@ -4,7 +4,7 @@ import Product from '../Components/product';
 
 
 import {useDispatch, useSelector} from "react-redux";
-import {getProducts} from '../features/products/productSlice'
+import {getProducts} from '../features/products/ProductsSlice'
 
 export default function HomeScreen() {
     const dispatch =useDispatch();
