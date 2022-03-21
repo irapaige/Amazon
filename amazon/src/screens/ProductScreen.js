@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
  import Rating from '../Components/Rating';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
@@ -11,11 +11,11 @@ export default function ProductScreen(props) {
     
     const dispatch =useDispatch();
     const {products} =useSelector(state =>state.products)
-    
+    const [qty,setQty]=useState()
     
     useEffect(() => {
         dispatch(getProducts())
-     }, []);
+     }, [dispatch]);
     
 
 
@@ -33,7 +33,7 @@ export default function ProductScreen(props) {
             <div className='col-2'>
             <ul>
             <li>
-            <h2>>{product.name}</h2>
+            <h2>{product.name}</h2>
             </li>
                 <li>
                     <Rating rating={product.rating} numReviews={product.numReviews}></Rating>
@@ -55,19 +55,38 @@ export default function ProductScreen(props) {
 <ul>
     <li>
         <div className='row'>
-<div className= 'price'>Price</div> <div>${product.price}> </div>
+<div className= 'price'>Price</div> <div>${product.price} </div>
 
 </div>
 
     </li>
             <li>
             <div className='row'>
-            <div>Status></div>
+            <div>Status</div>
             <div>
                 {product.countInStock>0?(<span className='success'>In Stock</span>):(<span className='error'>Out Of Stock</span>)}
             </div>
             </div>
             </li>
+            <li>
+                        <div className="row">
+                          <div>Qty</div>
+                          <div>
+                            <select
+                              value={qty}
+                              onChange={(e) => setQty(e.target.value)}
+                            >
+                              {[...Array(product.countInStock).keys()].map(
+                                (x) => (
+                                  <option key={x + 1} value={x + 1}>
+                                    {x + 1}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
     <li>
         <button className={'primary block'}>Add To Cart</button>
     </li>
