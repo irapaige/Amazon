@@ -25,9 +25,10 @@ export default function DetailsScreen(props) {
 
 
 
-  const addToCartHandler = () => {
+  const addToCartHandler = (product) => {
     dispatch(addToCart)
     history.push(`/cart/?&productId=${productId}&qty=${qty}`);
+    window.location.reload();
   };
 
   return (
