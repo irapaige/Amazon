@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { getProducts } from '../features/products/ProductsSlice'
 import {addToCart} from "../features/products/cartSlice";
-
+import {useHistory}from"react-router-dom"
 
 
 
@@ -17,15 +17,25 @@ export default function ProductScreen(props) {
     useEffect(() => {
         dispatch(getProducts())
      }, [dispatch]);
-    
 
+    const history=useHistory()
 
     const product = products.find((x)=> x._id ===props.match.params.id);
     if (!product){
     return<div> Product Not Found</div>}
+
+
 const handelAddToCart=(product)=>{
- dispatch(addToCart(product))
-}
+GoToCart()
+AddIn()
+  }
+    const GoToCart=()=>{
+        dispatch(addToCart(product));
+    }
+
+    const AddIn =()=>{
+        history.push("/cart" );
+    }
     return (
         <div>
         <Link to ="/">Back to HomeScreen</Link>
