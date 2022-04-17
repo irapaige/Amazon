@@ -1,4 +1,6 @@
 import Navbar from './Components/navbar/Navbar';
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import Footer from "./Components/Footer";
@@ -7,6 +9,7 @@ import {BrowserRouter,Route } from 'react-router-dom';
 function App() {
   return (
     <BrowserRouter>
+        <ToastContainer/>
     <div className="App">
 
 <Navbar/>
