@@ -3,6 +3,7 @@ import React,{useEffect,useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { getProducts } from '../features/products/ProductsSlice'
+import {addToCart} from "../features/products/cartSlice";
 
 
 
@@ -22,7 +23,9 @@ export default function ProductScreen(props) {
     const product = products.find((x)=> x._id ===props.match.params.id);
     if (!product){
     return<div> Product Not Found</div>}
-
+const handelAddToCart=(product)=>{
+ dispatch(addToCart(product))
+}
     return (
         <div>
         <Link to ="/">Back to HomeScreen</Link>
@@ -88,7 +91,7 @@ export default function ProductScreen(props) {
                         </div>
                       </li>
     <li>
-        <button className={'primary block'}>Add To Cart</button>
+        <button className={'primary block'} onClick={()=>handelAddToCart(product)}>Add To Cart</button>
     </li>
 
 
