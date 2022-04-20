@@ -1,19 +1,50 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
-
+import {useSelector}from "react-redux";
+import {Link} from "react-router-dom"
 const CartScreen = (props) => {
-    const productId = props.match.params.id;
-    console.log(productId)
-    const qty = props.location.search
-        ? Number(props.location.search.split('=')[1])
-        : 1;
+   const cart = useSelector(state =>state.cart)
 
-    return (
-        <div>
-           <h1>Cart Screen</h1>
-            <p>ADD TO CART:Product: {productId} Qty: {qty}</p>
-        </div>
-    );
+    return(<div className={"container"} >
+
+   <div className="ShoppingCart"> <h2 >Shopping Cart</h2></div>
+        {cart.cartItems.length===0?(
+            <div  className={"emptyCart"}>
+                <p>Your cart is Empty</p>
+            <div className={"start_shopping>"}>
+<Link to ="/">
+    <span className={"StartShopping"}>Start Shopping</span>
+    <i className="bi bi-basket"></i>
+</Link>
+            </div>
+            </div>
+        ):(
+            <div>
+<div className="titles">
+<h3 className="t"> Product  </h3>
+<h3 className="t">Price </h3>
+<h3 className="t">Quantity</h3>
+<h3 className="t">Total</h3>
+   </div> 
+   <div className="cart-items">
+       {cart.cartItems?.map(cartItem=>(
+           <div className="cart-item" key={cartItem.id}>
+            <div className="cart-product">
+                <img className={"cart-img"} src={cartItem.image}alt={cartItem.name}></img>
+                <div className={"dis"}>
+                   <h3>{cartItem.name}</h3> 
+                   <p>{cartItem.description}</p>
+                   <button className={"cart-button"}>Remove</button>
+                </div>
+                </div>   
+                
+           </div>
+       ))}
+   </div>
+            </div>
+        )}
+    </div>
+)
+
 };
 
 export default CartScreen;

@@ -115,3 +115,24 @@ img.medium {
   color: #a02020;
   background-color:#ffe0e0;
 }
+/*cart stuff*/
+.ShoppingCart{
+  width:100%;
+ margin-left: 40%;
+  }
+.titles{
+  display:flex;
+}
+.t{
+ margin-left: 15%;
+}
+.cart-img{
+  width:6%;
+  margin-left:16%;
+}
+.dis{
+ margin-left:10%;
+}
+.cart-button{
+  margin-left:5%
+}
