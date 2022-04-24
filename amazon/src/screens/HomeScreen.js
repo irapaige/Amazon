@@ -13,7 +13,7 @@ export default function HomeScreen() {
 
     useEffect(() => {
        dispatch(getProducts())
-    }, []);
+    }, [dispatch]);
     return (
         <div>
 

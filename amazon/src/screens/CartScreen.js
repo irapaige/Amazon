@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {useSelector}from "react-redux";
 import {Link} from "react-router-dom"
+import {QtyContext}from "../Components/QtyContext";
+
+
 const CartScreen = (props) => {
+    const {setQty}=useContext(QtyContext)
+    const {qty}=useContext(QtyContext)
+    console.log(qty)
    const cart = useSelector(state =>state.cart)
 
     return(<div className={"container"} >
@@ -35,7 +41,11 @@ const CartScreen = (props) => {
                    <p>{cartItem.description}</p>
                    <button className={"cart-button"}>Remove</button>
                 </div>
-                </div>   
+                <span className={"price"}>${cartItem.price}</span>
+                </div>
+               <div className={"qty"}>
+                   {qty}
+               </div>
                 
            </div>
        ))}
