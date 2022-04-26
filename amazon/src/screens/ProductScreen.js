@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState,} from 'react';
+import React, {useContext, useEffect, } from 'react';
  import Rating from '../Components/Rating';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
@@ -67,24 +67,25 @@ AddIn()
             </div>
             <div className='col-2'>
 <div className={'card card card-body'}>
-<ul>
+<ul className='box'>
     <li>
-        <div className='row'>
-<div className= 'price'>Price</div> <div>${product.price} </div>
+        <div className={""}>
+<div className= 'price2'>Price</div>
+            <div>${product.price} </div>
 
 </div>
 
     </li>
             <li>
-            <div className='row'>
+
             <div>Status</div>
             <div>
                 {product.countInStock>0?(<span className='success'>In Stock</span>):(<span className='error'>Out Of Stock</span>)}
             </div>
-            </div>
+
             </li>
             <li>
-                        <div className="row">
+                        <div className="qty">
                           <div>Qty</div>
                           <div>
                             <select
@@ -107,7 +108,7 @@ AddIn()
     </li>
 
 
-</ul>
+</ul >
 </div>
 
             </div>

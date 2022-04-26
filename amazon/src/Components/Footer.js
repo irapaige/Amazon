@@ -3,7 +3,7 @@ import React from 'react';
  
 const  Footer= () => {
     return (
-        <div className ="row center">
+        <div className ="footer">
            All Rights Reserved 
         </div>
     );

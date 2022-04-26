@@ -4,10 +4,10 @@ import {Link} from "react-router-dom"
 import {QtyContext}from "../Components/QtyContext";
 
 
-const CartScreen = (props) => {
+const CartScreen = () => {
     const {setQty}=useContext(QtyContext)
     const {qty}=useContext(QtyContext)
-    console.log(qty)
+
    const cart = useSelector(state =>state.cart)
 
     return(<div className={"container"} >
@@ -24,36 +24,36 @@ const CartScreen = (props) => {
             </div>
             </div>
         ):(
-            <div className={"row"}>
-<div className="titles">
-<h3 className="t"> Product  </h3>
-<h3 className="t">Price </h3>
-<h3 className="t">Quantity</h3>
-<h3 className="t">Total</h3>
-   </div> 
-   <div className="cart-items">
+            <div>
+<div className="row2">
+<h3 > Product  </h3>
+<h3">Price </h3>
+<h3 >Quantity</h3>
+<h3 ">Total</h3>
+ </div>
+
        {cart.cartItems?.map(cartItem=>(
-           <div className="cart-item" key={cartItem.id}>
-            <div className="cart-product">
-                <img className={"cart-img"} src={cartItem.image}alt={cartItem.name}></img>
-                <div className={"dis"}>
-                   <h3>{cartItem.name}</h3> 
+           <div className="row" key={cartItem.id}>
+                <img className={" img-small "} src={cartItem.image}alt={cartItem.name}></img>
+
+                  <span> <h3 className="">{cartItem.name}</h3></span>
                    <p>{cartItem.description}</p>
                    <button className={"cart-button"}>Remove</button>
-                </div>
-                <div className={"price"}>${cartItem.price}</div>
-                </div>
+
+
+                <span className={"price"}>${cartItem.price}</span>
+
+
                <div className={"qty"}>
                    {qty}
-               </div>
-                
-           </div>
 
-       ))}
-   </div>
-            </div>
-        )}
-    </div>
+
+
+
+
+
+
+
 )
 
 };
