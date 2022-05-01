@@ -1,61 +1,116 @@
-import React, {useContext} from 'react';
-import {useSelector}from "react-redux";
-import {Link} from "react-router-dom"
-import {QtyContext}from "../Components/QtyContext";
+import React, {useContext,useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { addToCart } from '../features/products/cartSlice';
+import MessageBox from '../Components/MessageBox';
+import { QtyContext } from '../Components/QtyContext';
 
 
-const CartScreen = (props) => {
-    const {setQty}=useContext(QtyContext)
+export default function CartScreen(props) {
+
+const {setQty}=useContext(QtyContext)
     const {qty}=useContext(QtyContext)
-    console.log(qty)
-   const cart = useSelector(state =>state.cart)
+const productId=useSelector(state=>state.productId)
+console.log(productId)
 
-    return(<div className={"container"} >
+   
+    const cart = useSelector((state) => state.cart);
+    const { cartItems } = cart;
+    const dispatch = useDispatch();
+    useEffect(() => {
+      if (productId) {
+        dispatch(addToCart(productId, qty));
+      }
+    }, [dispatch, productId, qty]);
+  
+    const removeFromCartHandler = (id) => {
+      // delete action
+    };
+  
+    const checkoutHandler = () => {
+      props.history.push('/signin?redirect=shipping');
+    };
+    return (
+     
+      <div className="row top">
+        <div className="col-1">
+          <h1>Shopping Cart</h1>
+          {cartItems.length === 0 ? (
+            <MessageBox>
+              Cart is empty. <Link to="/">Go Shopping</Link>
+            </MessageBox>
+          ) : (
+            <ul>
+              {cartItems.map((item) => (
+                <li key={item.product}>
+                  <div className="row">
+                    <div>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="small"
+                      ></img>
+                    </div>
+                    <div className="min-30">
+                      <Link to={`/product/${item.product}`}>{item.name}</Link>
+                    </div>
+                    <div>
+                      <select
+                        value={qty}
+                        onChange={(e) =>
+                            setQty(e.target.value
+                          )
+                        }
+                      >
+                        {[...Array(item.countInStock).keys()].map((x) => (
+                          <option key={x + 1} value={x + 1}>
+                            {x + 1}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>${item.price}</div>
+                    <div>
+                      <button
+                        type="button"
+                        onClick={() => removeFromCartHandler(item.product)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div className="col-1">
+          <div className="card2">
+            <ul>
+              <li>
+                <h2>
+                  Subtotal ({cartItems.reduce((a, c) => a + qty, 0)} items) : $
+                  {cartItems.reduce((a, c) => a + c.price * qty, 0)}
+                </h2>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={checkoutHandler}
+                  className="primary block"
+                  disabled={cartItems.length === 0}
+                >
+                  Proceed to Checkout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-   <div className="ShoppingCart"> <h2 >Shopping Cart</h2></div>
-        {cart.cartItems.length===0?(
-            <div  className={"emptyCart"}>
-                <p>Your cart is Empty</p>
-            <div className={"start_shopping>"}>
-<Link to ="/">
-    <span className={"StartShopping"}>Start Shopping</span>
-    <i className="bi bi-basket"></i>
-</Link>
-            </div>
-            </div>
-        ):(
-            <div className={"row"}>
-<div className="titles">
-<h3 className="t"> Product  </h3>
-<h3 className="t">Price </h3>
-<h3 className="t">Quantity</h3>
-<h3 className="t">Total</h3>
-   </div> 
-   <div className="cart-items">
-       {cart.cartItems?.map(cartItem=>(
-           <div className="cart-item" key={cartItem.id}>
-            <div className="cart-product">
-                <img className={"cart-img"} src={cartItem.image}alt={cartItem.name}></img>
-                <div className={"dis"}>
-                   <h3>{cartItem.name}</h3> 
-                   <p>{cartItem.description}</p>
-                   <button className={"cart-button"}>Remove</button>
-                </div>
-                <div className={"price"}>${cartItem.price}</div>
-                </div>
-               <div className={"qty"}>
-                   {qty}
-               </div>
-                
-           </div>
 
-       ))}
-   </div>
-            </div>
-        )}
-    </div>
-)
 
-};
 
-export default CartScreen;
+ 

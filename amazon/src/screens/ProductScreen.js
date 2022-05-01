@@ -32,7 +32,7 @@ GoToCart()
 AddIn()
   }
     const GoToCart=()=>{
-        dispatch(addToCart(product));
+        dispatch(addToCart(product,qty));
     }
 
     const AddIn =()=>{

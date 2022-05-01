@@ -7,9 +7,9 @@ const  Navbar = () => {
           <nav className="navbar navbar-expand-lg navbar-light bg-primary">
    <div className="container-fluid">
        {/* eslint-disable-next-line */}
-      <a className="navbar-brand" href="#">Jackies Store</a>
+      <a className="navbar-brand" href="#">Jackie's Store</a>
       <button
-         className="navbar-toggler"
+         className="navbar-toggle"
          type="button"
          data-bs-toggle="collapse"
          data-bs-target="#navbarSupportedContent"
@@ -17,7 +17,7 @@ const  Navbar = () => {
          aria-expanded="false"
          aria-label="Toggle navigation"
       >
-         <span className="navbar-toggler-icon"></span>
+         <span className="navbar-toggle-icon"></span>
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -57,6 +57,7 @@ const  Navbar = () => {
                >
             </li>
          </ul>
+         <i className="fa-solid fa-cart-shopping"></i>
          <form className="d-flex">
             <input
                className="form-control me-2"
