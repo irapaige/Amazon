@@ -39,7 +39,7 @@ AddIn()
         history.push("/cart" );
     }
     return (
-        <div>
+        <div className={"container"}>
         <Link to ="/">Back to HomeScreen</Link>
         <div className = 'row'>
         <div className='col-2'>

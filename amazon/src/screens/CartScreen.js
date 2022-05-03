@@ -1,7 +1,7 @@
 import React, {useContext,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../features/products/cartSlice';
+import { addToCart,removeFromCart } from '../features/products/cartSlice';
 import MessageBox from '../Components/MessageBox';
 import { QtyContext } from '../Components/QtyContext';
 
@@ -23,8 +23,8 @@ console.log(productId)
       }
     }, [dispatch, productId, qty]);
   
-    const removeFromCartHandler = (id) => {
-      // delete action
+    const removeFromCartHandler = (cartItem) => {
+      dispatch(removeFromCart(cartItem));
     };
   
     const checkoutHandler = () => {
@@ -54,6 +54,13 @@ console.log(productId)
                     <div className="min-30">
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
                     </div>
+                      <div>
+                          <button
+                              type="button"
+                              onClick={() => removeFromCartHandler(cartItems)}>
+Remove from cart
+                          </button>
+                      </div>
                     <div>
                       <select
                         value={qty}
@@ -70,14 +77,7 @@ console.log(productId)
                       </select>
                     </div>
                     <div>${item.price}</div>
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => removeFromCartHandler(item.product)}
-                      >
-                        Delete
-                      </button>
-                    </div>
+
                   </div>
                 </li>
               ))}
