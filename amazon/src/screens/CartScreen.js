@@ -11,7 +11,7 @@ export default function CartScreen(props) {
 const {setQty}=useContext(QtyContext)
     const {qty}=useContext(QtyContext)
 const productId=useSelector(state=>state.productId)
-console.log(productId)
+
 
    
     const cart = useSelector((state) => state.cart);
