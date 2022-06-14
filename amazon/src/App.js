@@ -6,7 +6,7 @@ import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import Footer from "./Components/Footer";
 import {QtyContext} from './Components/QtyContext';
-import {BrowserRouter,Route } from 'react-router-dom';
+import {Routes,BrowserRouter,Route } from 'react-router-dom';
 import {useState} from "react";
 
 function App() {
@@ -19,9 +19,11 @@ const [qty,setQty]= useState(0)
     <div className="App">
         <QtyContext.Provider value={{qty,setQty}} >
 <Navbar/>
-<Route path="/" component={HomeScreen } exact></Route>
-<Route path= "/product/:id" component={ProductScreen}></Route>
-<Route path="/cart" component={CartScreen}></Route>
+            <Routes>
+<Route path="/" element={<HomeScreen/> } exact></Route>
+<Route path= "/product/:id" element={<ProductScreen/>}></Route>
+<Route path="/cart" element={<CartScreen/>}></Route>
+            </Routes>
         </QtyContext.Provider>
 <Footer/>
 

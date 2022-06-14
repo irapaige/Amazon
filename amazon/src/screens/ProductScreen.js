@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, } from 'react';
  import Rating from '../Components/Rating';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { getProducts } from '../features/products/ProductsSlice'
 import {addToCart} from "../features/products/cartSlice";
 import {useHistory}from"react-router-dom"
 import{QtyContext}from "../Components/QtyContext";
-
+import {useNavigate}from 'react-router-dom'
 
 
 export default function ProductScreen(props) {
@@ -20,9 +20,9 @@ const {setQty}=useContext(QtyContext)
         dispatch(getProducts())
      }, [dispatch]);
 
-    const history=useHistory()
-
-    const product = products.find((x)=> x._id ===props.match.params.id);
+    const navigate=useNavigate()
+const{id}=useParams()
+    const product = products.find((x)=> x._id ===(id));
     if (!product){
     return<div> Product Not Found</div>}
 
@@ -36,7 +36,7 @@ AddIn()
     }
 
     const AddIn =()=>{
-        history.push("/cart" );
+        navigate("/cart" );
     }
     return (
         <div className={"container"}>
