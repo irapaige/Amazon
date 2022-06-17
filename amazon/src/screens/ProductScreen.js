@@ -4,7 +4,7 @@ import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { getProducts } from '../features/products/ProductsSlice'
 import {addToCart} from "../features/products/cartSlice";
-import {useHistory}from"react-router-dom"
+
 import{QtyContext}from "../Components/QtyContext";
 import {useNavigate}from 'react-router-dom'
 

@@ -54,10 +54,10 @@ const productId=useSelector(state=>state.productId)
                                                 alt={item.name}
                                                 className="img-fluid rounded img-thumbnail"
                                             ></img>{' '}
-                                            <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                                            <Link to={`/product/${item.product}`}>{item.name}</Link>
                                         </Col>
                                         <Col md={3}>
-                                            <Button variant="light" disabled={item.quantity === 1}>
+                                            <Button variant="light" disabled={item.qty === 1}>
                                                 <i className="fas fa-minus-circle"></i>
                                             </Button>{' '}
                                             <span>{qty}</span>{' '}
