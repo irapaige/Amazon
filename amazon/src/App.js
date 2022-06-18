@@ -1,4 +1,4 @@
-import Navbar from './Components/navbar/Navbar';
+
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import CartScreen from "./screens/CartScreen"
@@ -18,7 +18,7 @@ const [qty,setQty]= useState(0)
         <ToastContainer/>
     <div className="App">
         <QtyContext.Provider value={{qty,setQty}} >
-<Navbar/>
+
             <Routes>
 <Route path="/" element={<HomeScreen/> } exact></Route>
 <Route path= "/product/:id" element={<ProductScreen/>}></Route>

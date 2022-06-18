@@ -1,8 +1,7 @@
 import React, {useContext,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { removeFromCart } from '../features/products/cartSlice';
-import {addToCart} from "../Components/cartAction";
+import {addToCart,removeFromCart} from "../Components/cartAction";
 import MessageBox from '../Components/MessageBox';
 import { QtyContext } from '../Components/QtyContext';
 import {Button, Card, Col, ListGroup, Row} from "react-bootstrap";
@@ -26,8 +25,8 @@ console.log(productId)
       }
     }, [dispatch, productId, qty]);
 
-    const removeFromCartHandler = (cartItem) => {
-      dispatch(removeFromCart(cartItem));
+    const removeFromCartHandler = (id) => {
+      dispatch(removeFromCart(id));
     };
   
     const checkoutHandler = () => {
@@ -72,9 +71,15 @@ console.log(productId)
                                         </Col>
                                         <Col md={3}>${item.price}</Col>
                                         <Col md={2}>
-                                            <Button variant="light">
+                                        <button
+                      type="button"
+                      onClick={() => removeFromCartHandler(item.product)}
+                    >
+                      <i className="fas fa-trash"></i>
+                    </button>
+                                            {/* <Button onClick={()=> removeFromCartHandler(item.product)} variant="light">
                                                 <i className="fas fa-trash"></i>
-                                            </Button>
+                                            </Button> */}
                                         </Col>
                                     </Row>
                                 </ListGroup.Item>
