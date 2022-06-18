@@ -1,6 +1,6 @@
 import React, {useContext,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { removeFromCart } from '../features/products/cartSlice';
 import {addToCart} from "../Components/cartAction";
 import MessageBox from '../Components/MessageBox';
@@ -12,8 +12,9 @@ export default function CartScreen(props) {
 
 const {setQty}=useContext(QtyContext)
     const {qty}=useContext(QtyContext)
-const productId=useSelector(state=>state.productId)
-
+    const params=useParams()
+    const {id:productId} = params;
+console.log(productId)
 
    
     const cart = useSelector((state) => state.cart);
@@ -24,7 +25,7 @@ const productId=useSelector(state=>state.productId)
         dispatch(addToCart(productId, qty));
       }
     }, [dispatch, productId, qty]);
-  
+
     const removeFromCartHandler = (cartItem) => {
       dispatch(removeFromCart(cartItem));
     };

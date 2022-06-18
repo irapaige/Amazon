@@ -3,8 +3,6 @@ import React, {useContext, useEffect, } from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { getProducts } from '../features/products/ProductsSlice'
-import {addToCart} from "../features/products/cartSlice";
-
 import{QtyContext}from "../Components/QtyContext";
 import {useNavigate}from 'react-router-dom'
 
@@ -14,7 +12,8 @@ const {setQty}=useContext(QtyContext)
     const {qty}=useContext(QtyContext)
     const dispatch =useDispatch();
     const {products} =useSelector(state =>state.products)
-
+     const params=useParams()
+    const {id:productId} = params;
     
     useEffect(() => {
         dispatch(getProducts())
@@ -26,18 +25,10 @@ const{id}=useParams()
     if (!product){
     return<div> Product Not Found</div>}
 
+    const handelAddToCart = () => {
+     navigate(`/cart/${productId}?qty=${qty}`);
+    };
 
-const handelAddToCart=(product)=>{
-GoToCart()
-AddIn()
-  }
-    const GoToCart=()=>{
-        dispatch(addToCart(product,qty));
-    }
-
-    const AddIn =()=>{
-        navigate("/cart" );
-    }
     return (
         <div className={"container"}>
         <Link to ="/">Back to HomeScreen</Link>
@@ -104,7 +95,7 @@ AddIn()
                         </div>
                       </li>
     <li>
-        <button className={'primary block'} onClick={()=>handelAddToCart(product)}>Add To Cart</button>
+        <button className={'primary block'} onClick={()=>handelAddToCart(productId)}>Add To Cart</button>
     </li>
 
 
