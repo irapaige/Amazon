@@ -1,7 +1,8 @@
 import React, {useContext,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { addToCart,removeFromCart } from '../features/products/cartSlice';
+import { removeFromCart } from '../features/products/cartSlice';
+import {addToCart} from "../Components/cartAction";
 import MessageBox from '../Components/MessageBox';
 import { QtyContext } from '../Components/QtyContext';
 import {Button, Card, Col, ListGroup, Row} from "react-bootstrap";
