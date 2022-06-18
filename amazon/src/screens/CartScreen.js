@@ -59,11 +59,11 @@ console.log(productId)
                                             <Link to={`/product/${item.product}`}>{item.name}</Link>
                                         </Col>
                                         <Col md={3}>
-                                            <Button variant="light" disabled={item.qty === 1}>
+                                            <Button onClick={()=>setQty(qty-1)} variant="light" disabled={item.qty === 1}>
                                                 <i className="fas fa-minus-circle"></i>
                                             </Button>{' '}
                                             <span>{qty}</span>{' '}
-                                            <Button
+                                            <Button onClick={()=>setQty(qty+1)}
                                                 variant="light"
                                                 disabled={item.qty === item.countInStock}
                                             >
