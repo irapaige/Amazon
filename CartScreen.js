@@ -10,7 +10,8 @@ const CartScreen = () => {
 
    const cart = useSelector(state =>state.cart)
 
-    return(<div className={"container"} >
+    return(
+    <div  className={"container"}>
 
    <div className="ShoppingCart"> <h2 >Shopping Cart</h2></div>
         {cart.cartItems.length===0?(
@@ -24,15 +25,15 @@ const CartScreen = () => {
             </div>
             </div>
         ):(
-            <div>
+           
 <div className="row2">
 <h3 > Product  </h3>
-<h3">Price </h3>
+<h3>Price </h3>
 <h3 >Quantity</h3>
-<h3 ">Total</h3>
+<h3 >Total</h3>
  </div>
 
-       {cart.cartItems?.map(cartItem=>(
+       {cart.cartItems?.map((cartItem=>(
            <div className="row" key={cartItem.id}>
                 <img className={" img-small "} src={cartItem.image}alt={cartItem.name}></img>
 
@@ -45,15 +46,15 @@ const CartScreen = () => {
 
 
                <div className={"qty"}>
-                   {qty}
+                   {qty}</div>
+
+</div>
 
 
 
 
-
-
-
-
+       )
+       )
 )
 
 };
