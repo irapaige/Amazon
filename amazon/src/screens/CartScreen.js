@@ -1,6 +1,6 @@
 import React, {useContext,useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {addToCart,removeFromCart} from "../Components/cartAction";
 import MessageBox from '../Components/MessageBox';
 import { QtyContext } from '../Components/QtyContext';
@@ -13,7 +13,7 @@ const {setQty}=useContext(QtyContext)
     const {qty}=useContext(QtyContext)
     const params=useParams()
     const {id:productId} = params;
-console.log(productId)
+
 
    
     const cart = useSelector((state) => state.cart);
@@ -28,9 +28,11 @@ console.log(productId)
     const removeFromCartHandler = (id) => {
       dispatch(removeFromCart(id));
     };
+
+    const navigate= useNavigate()
   
     const checkoutHandler = () => {
-      props.history.push('/signing?redirect=shipping');
+     navigate('/signin?redirect=shipping');
     };
     return (
         <div>
@@ -67,7 +69,7 @@ console.log(productId)
                                                 disabled={item.qty === item.countInStock}
                                             >
                                                 <i className="fas fa-plus-circle"></i>
-                                            </Button>
+                                            </Button>{' '}
                                         </Col>
                                         <Col md={3}>${item.price}</Col>
                                         <Col md={2}>
@@ -102,6 +104,7 @@ console.log(productId)
                                         <Button
                                             type="button"
                                             variant="primary"
+                                            onClick={checkoutHandler}
                                             disabled={cartItems.length === 0}
                                         >
                                             Proceed to Checkout

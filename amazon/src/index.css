@@ -167,8 +167,8 @@ color: #f0c040;
   min-width: 20%;
 
 }
-.box{
-
+.small-container{
+max-width: 600px;
 
 }
 
