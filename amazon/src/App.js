@@ -25,6 +25,7 @@ const [qty,setQty]= useState(0)
 <Route path= "/product/:id" element={<ProductScreen/>}></Route>
 <Route path="/cart/:id" element={<CartScreen/>}></Route>
                 <Route path="/signin" element={<SigninScreen />} />
+
             </Routes>
         </QtyContext.Provider>
 <Footer/>
