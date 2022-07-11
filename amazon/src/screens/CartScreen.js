@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../Components/cartAction';
-import MessageBox from '../Components/MessageBox';
+import MessageBox from '../Components/messageBox';
 import { QtyContext } from '../Components/QtyContext';
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 
@@ -43,8 +43,8 @@ export default function CartScreen(props) {
             </MessageBox>
           ) : (
             <ListGroup>
-              {cartItems.map((item) => (
-                <ListGroup.Item key={item._id}>
+              {cartItems.map((item,i) => (
+                <ListGroup.Item key={i}>
                   <Row className='align-items-center'>
                     <Col md={4}>
                       <img
