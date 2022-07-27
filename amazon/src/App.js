@@ -9,6 +9,8 @@ import Footer from "./Components/Footer";
 import {QtyContext} from './Components/QtyContext';
 import {Routes,BrowserRouter,Route } from 'react-router-dom';
 import {useState} from "react";
+import { useContext } from 'react';
+import { Store } from './Store';
 
 function App() {
 const [qty,setQty]= useState(0)

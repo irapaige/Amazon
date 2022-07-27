@@ -4,7 +4,8 @@ import {Store} from "../../Store.js"
 import {useContext} from "react";
 import Nav from 'react-bootstrap/Nav';
 import {Link} from "react-router-dom";
-
+const { state } = useContext(Store);
+const { cart } = state;
 
 const Navbar = () => {
     const {state}=useContext(Store);
